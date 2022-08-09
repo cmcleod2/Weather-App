@@ -43,7 +43,7 @@ function Header(props) {
 
     return (
         <StyledHeader className="darkbg" variant="dark" expand="lg">
-            <Navbar.Brand href="/">
+            <Navbar.Brand href="#/">
                 <img
                     src={`${process.env.PUBLIC_URL}/weather-icon.png`}
                     width="30"
@@ -52,11 +52,11 @@ function Header(props) {
                     alt="Weather App Icon"
                 />
             </Navbar.Brand>
-            <Navbar.Brand href="/">Weather App</Navbar.Brand>
+            <Navbar.Brand href="#/">Weather App</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="#/">Home</Nav.Link>
                     <Nav.Link href={`#/current/${props.zipcode}`}>Current</Nav.Link>
                     <Nav.Link href={`#/forecast/${props.zipcode}`}>Forecast</Nav.Link>
                 </Nav>
