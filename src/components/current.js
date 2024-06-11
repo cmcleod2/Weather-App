@@ -1,5 +1,5 @@
 import React , {useState, useEffect} from 'react';
-import { useRouteMatch } from 'react-router';
+import { useMatch } from 'react-router';
 import CurrentWeather from './currentWeather';
 import HourlyWeather from './hourlyweather';
 import Loading from './loading';
@@ -46,20 +46,20 @@ function Current() {
     const [hourlyWeather, setHourlyWeather] = useState();
     const [latitude, setLatitude] = useState(40.2338);
     const [longitude, setLongitude] = useState(-111.6585);
-    let match = useRouteMatch('/current/:zip');
+    let match = useMatch('/current/:zip');
 
     useEffect(() => {
         fetch(`${url}weather?zip=${match.params.zip},us&units=${units}&appid=${APIkey}`)
             .then(res => res.json())
             .then(response => {
-                //console.log('Current:', response);
+                console.log('Current:', response);
                 setCurrentWeather(response);
                 setLatitude(response.coord.lat);
                 setLongitude(response.coord.lon);
                 fetch(`${url}onecall?lat=${latitude}&lon=${longitude}&units=${units}&appid=${APIkey}`)
                     .then(res => res.json())
                     .then(response => {
-                        //console.log('All Info:', response);
+                        console.log('All Info:', response);
                         setHourlyWeather(response);
                         setIsLoading(false);
                     })

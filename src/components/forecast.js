@@ -1,5 +1,5 @@
 import React , {useState, useEffect} from 'react';
-import { useRouteMatch } from 'react-router';
+import { useMatch } from 'react-router';
 import ForecastCard from './forecastCard';
 import DayInfo from './dayinfo';
 import Loading from './loading';
@@ -47,19 +47,21 @@ function Forecast() {
     const [latitude, setLatitude] = useState(40.2338);
     const [longitude, setLongitude] = useState(-111.6585);
     const [daytracker, setDayTracker] = useState(0);
-    let match = useRouteMatch('/forecast/:zip');
+    let match = useMatch('/forecast/:zip');
 
 
     useEffect(() => {
         fetch(`${url}forecast?zip=${match.params.zip},us&units=${units}&appid=${APIkey}`)
             .then(res => res.json())
             .then(response => {
+                console.log('Five Day Hour:', response);
                 setFiveDayHourWeather(response);
                 setLatitude(response.city.coord.lat);
                 setLongitude(response.city.coord.lon);
                 fetch(`${url}onecall?lat=${latitude}&lon=${longitude}&units=${units}&appid=${APIkey}`)
                     .then(res => res.json())
                     .then(response => {
+                        console.log('Five Day:', response);
                         setFiveDayWeather(response);
                         setIsLoading(false);
                     })

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HashRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import './App.css';
 import styled from 'styled-components';
 import Header from './components/header';
@@ -23,18 +23,12 @@ function App() {
     <Router>
       <MainContainer>
         <Header zipcode={zipcode} setZipcode={setZipcode}/>
-        <Switch>
-          <Route path='/current/:zip'>
-            <Current />
-          </Route>
-          <Route path='/forecast/:zip'>
-            <Forecast />
-          </Route>
-          <Route path='/'>
-            <Home zipcode={zipcode} setZipcode={setZipcode}/>
-          </Route>
-          <Route render={() => <Redirect to="/" />} />
-        </Switch>
+        <Routes>
+          <Route path='/current/:zip' element={<Current />}/>
+          <Route path='/forecast/:zip' element={<Forecast />}/>
+          <Route path='/' element={<Home zipcode={zipcode} setZipcode={setZipcode}/>}/>
+          <Route render={() => <Navigate to="/" />} />
+        </Routes>
         <Footer />
       </MainContainer>
     </Router>

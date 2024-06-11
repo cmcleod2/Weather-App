@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {StyledOrganizer} from '../App.styles'
 import Form from 'react-bootstrap/Form';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const HomeOrganizer = styled(StyledOrganizer)`
     background-image: url(${`${process.env.PUBLIC_URL}/media/Y_mountain2.JPG`});
@@ -75,7 +75,7 @@ const Divider = styled.div`
 `
 
 function Home(props) {
-    const history = useHistory();
+    const history = useNavigate();
 
     function isValidUSZip(sZip) {
         return /^\d{5}(-\d{4})?$/.test(sZip);

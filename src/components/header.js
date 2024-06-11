@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const StyledHeader = styled(Navbar)`
     color: white;
@@ -24,7 +24,7 @@ const StyledHeader = styled(Navbar)`
 `
 
 function Header(props) {
-    const history = useHistory();
+    const history = useNavigate();
 
     function isValidUSZip(sZip) {
         return /^\d{5}(-\d{4})?$/.test(sZip);
@@ -60,7 +60,7 @@ function Header(props) {
                     <Nav.Link href={`#/current/${props.zipcode}`}>Current</Nav.Link>
                     <Nav.Link href={`#/forecast/${props.zipcode}`}>Forecast</Nav.Link>
                 </Nav>
-                <Form inline onSubmit={handleSubmit}>
+                <Form inline="true" onSubmit={handleSubmit}>
                     <Navbar.Text>
                         Current Zipcode: <a className="space" href={`#/current/${props.zipcode}`}>{props.zipcode}</a>
                     </Navbar.Text>
